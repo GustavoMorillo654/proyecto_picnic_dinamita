@@ -12,7 +12,7 @@ class UnetUserCreationForm(UserCreationForm):
 
     class Meta(UserCreationForm.Meta):
         model = User
-        fields = ("nombre", "apellido", "username", "email", "rol", "carrera", "materia")
+        fields = ( "username", "email", "first_name", "last_name")
 
     def clean_email(self):
         email = self.cleaned_data.get("email")
@@ -20,7 +20,6 @@ class UnetUserCreationForm(UserCreationForm):
         if not email.endswith('@unet.edu.ve'):
             raise forms.ValidationError("Este correo no es válido. Solo se permiten correos del dominio @unet.edu.ve.")
         return email
-
 
 class ImagenForm(forms.ModelForm):
     class Meta:
