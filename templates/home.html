@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}Mi Galería - Proyecto Dinamita{% endblock %}
+
+{% block content %}
+    <h2>Sube una nueva imagen 🖼️</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Subir Imagen</button>
+    </form>
+
+    <hr style="margin: 30px 0;">
+
+    <h2>Mis Imágenes</h2>
+    {% if imagenes %}
+        <div class="gallery">
+            {% for imagen in imagenes %}
+                <div class="gallery-item">
+                    <img src="{{ imagen.imagen.url }}" alt="{{ imagen.titulo }}">
+                    <p><strong>{{ imagen.titulo }}</strong></p>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>Aún no has subido ninguna imagen. ¡Anímate a subir la primera!</p>
+    {% endif %}
+{% endblock %}

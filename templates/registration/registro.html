@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}Registro - Proyecto Dinamita{% endblock %}
+
+{% block content %}
+    <h2>Crear una Cuenta Nueva</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">¡Registrarme!</button>
+    </form>
+    <p style="margin-top: 15px;">¿Ya tienes una cuenta? <a href="{% url 'login' %}">Inicia sesión</a>.</p>
+{% endblock %}
