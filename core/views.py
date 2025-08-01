@@ -53,4 +53,10 @@ def feed_view(request):
     context = {
         'publicaciones': publicaciones
     }
+    if request.method == 'POST':
+        contenido = request.POST.get('contenido')
+        if contenido:
+            nueva_publicacion = Publication(contenido=contenido, usuario=request.user)
+            nueva_publicacion.save()
+            return redirect('feed')
     return render(request, 'feed.html', context) 
