@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import Imagen
+from .models import Imagen, Publication
 
 class UnetUserCreationForm(UserCreationForm):
     """
@@ -12,7 +12,7 @@ class UnetUserCreationForm(UserCreationForm):
 
     class Meta(UserCreationForm.Meta):
         model = User
-        fields = ("nombre", "apellido", "username", "email", "rol", "carrera", "materia")
+        fields = ("username", "email")
 
     def clean_email(self):
         email = self.cleaned_data.get("email")
@@ -21,6 +21,16 @@ class UnetUserCreationForm(UserCreationForm):
             raise forms.ValidationError("Este correo no es válido. Solo se permiten correos del dominio @unet.edu.ve.")
         return email
 
+class SearchUserForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['username']
+        labels = {
+            'username': 'Nombre del usuario a buscar',
+        }
+        widgets = {
+            'username': forms.TextInput(attrs={'placeholder': 'Buscar usuario'}),
+        }
 
 class ImagenForm(forms.ModelForm):
     class Meta:
@@ -32,4 +42,15 @@ class ImagenForm(forms.ModelForm):
         }
         widgets = {
             'titulo': forms.TextInput(attrs={'placeholder': 'Ej: Mi foto en la playa'}),
+        }
+
+class PublicationForm(forms.ModelForm):
+    class Meta:
+        model = Publication
+        fields = ['contenido']
+        labels = {
+            'contenido': '¿Qué estás pensando?',
+        }
+        widgets = {
+            'contenido': forms.Textarea(attrs={'placeholder': 'Escribe tu publicación aquí...'}),
         }

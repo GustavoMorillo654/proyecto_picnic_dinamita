@@ -28,7 +28,7 @@
 <body>
     <div class="container">
         <nav>
-            <div class="logo"><a href="{% url 'home' %}">🧨 Proyecto Dinamita</a></div>
+            <div class="logo"><a href="{% url 'home' %}">🧨 UNET CONECTA</a></div>
             <div class="user-actions">
                 {% if user.is_authenticated %}
                     <span>Hola, <strong>{{ user.username }}</strong></span>
@@ -41,6 +41,7 @@
                     <a href="{% url 'registro' %}">Registrarse</a>
                 {% endif %}
             </div>
+            <div><a href="{% url 'feed' %}">Ver Publicaciones</a></div>
         </nav>
         <main>
             {% block content %}

@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block title %}Publicaciones{% endblock %}
+<h1>Publicaciones</h1>
+<form action="{% url 'feed' %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Publicar</button>
+</form>

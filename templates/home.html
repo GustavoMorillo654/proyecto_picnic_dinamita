@@ -3,6 +3,14 @@
 {% block title %}Mi Galería - Proyecto Dinamita{% endblock %}
 
 {% block content %}
+    <div>
+    <h2>Buscar Usuario</h2>
+    <form method="get" action="{% url 'search_user_form' %}">
+        {% csrf_token %}
+        {{ search_user_form.as_p }}
+        <button type="submit">Buscar</button>
+    </form>
+    </div>
     <h2>Sube una nueva imagen 🖼️</h2>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
