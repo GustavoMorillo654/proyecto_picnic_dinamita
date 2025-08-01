@@ -12,7 +12,7 @@ class UnetUserCreationForm(UserCreationForm):
 
     class Meta(UserCreationForm.Meta):
         model = User
-        fields = ("username", "email")
+        fields = ("nombre", "apellido", "username", "email", "rol", "carrera", "materia")
 
     def clean_email(self):
         email = self.cleaned_data.get("email")
